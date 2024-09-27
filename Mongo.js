@@ -65,7 +65,7 @@ db.students.insertOne({
 // ** To find/read a document using FILTER
 
 // Syntax -- db.collectionName.find({object})
- db.students.find({name:"SRIRAM GOKUL"})
+ //db.students.find({name:"SRIRAM GOKUL"})
 
 
 
@@ -77,7 +77,7 @@ db.students.insertOne({
 
 // To update a unique document
 // Syntax - db.collectionName.updateOne({filter},{$set,{filtervalue}})
-// db.students.updateOne({_id: ObjectId('66f6515f43207b05f8c73c11')},{$set:{task:98}})
+ db.students.updateOne({_id: ObjectId('66f6515f43207b05f8c73c15')},{$set:{task:98, status:"EXPERIENCED"}})
 
 // db.students.find({_id: ObjectId('66f6515f43207b05f8c73c11')})
 
