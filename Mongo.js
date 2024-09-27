@@ -4,3 +4,4 @@
 // To shift to any database --> use databasename
 // To show the list of Collections in the database --> show collections
 // To create a new Database --> use newDatabase Name
+// Creating a Collection --> db.createCollection("students")
