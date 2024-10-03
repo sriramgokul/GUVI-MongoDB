@@ -7,6 +7,8 @@
 // Creating a Collection --> db.createCollection("students")
 // cls--> cls command is used to clear screen the details
 
+// Note: You cannot use both 0 and 1 in the same object. The only exception is the _id field. You should either specify the fields you would like to include or the fields you would like to exclude.
+
 // *** Creating a document --> db.CollectionName.insertMany(BsonData)--insertMany is used for inserting multiple documents at a time in the collections.
 
 db.students.insertMany([
@@ -167,7 +169,69 @@ db.students.find({task:{$gt:85,$lt:95}})
 
 db.students.find({$or:[{task:85},{name:"RAJ"}]})
 
+// MongoDB Query Operators
+// There are many query operators that can be used to compare and reference document fields.
+
+// Comparison
+// The following operators can be used in queries to compare values:
+
+// $eq: Values are equal
+// $ne: Values are not equal
+// $gt: Value is greater than another value
+// $gte: Value is greater than or equal to another value
+// $lt: Value is less than another value
+// $lte: Value is less than or equal to another value
+// $in: Value is matched within an array
+
+// Logical
+// The following operators can logically compare multiple queries.
+
+// $and: Returns documents where both queries match
+// $or: Returns documents where either query matches
+// $nor: Returns documents where both queries fail to match
+// $not: Returns documents where the query does not match
+
+// Evaluation
+// The following operators assist in evaluating documents.
+
+// $regex: Allows the use of regular expressions when evaluating field values
+// $text: Performs a text search
+// $where: Uses a JavaScript expression to match documents
+
+// MongoDB Update Operators
+// There are many update operators that can be used during document updates.
+
+// Fields
+// The following operators can be used to update fields:
+
+// $currentDate: Sets the field value to the current date
+// $inc: Increments the field value
+// $rename: Renames the field
+// $set: Sets the value of a field
+// $unset: Removes the field from the document
+
+// Array
+// The following operators assist with updating arrays.
+
+// $addToSet: Adds distinct elements to an array
+// $pop: Removes the first or last element of an array
+// $pull: Removes all elements from an array that match the query
+// $push: Adds an element to an array
+
+
+// Aggregation $lookup
+
+// This aggregation stage performs a left outer join to a collection in the same database.
+
+// There are four required fields:
+
+// from: The collection to use for lookup in the same database
+// localField: The field in the primary collection that can be used as a unique identifier in the from collection.
+// foreignField: The field in the from collection that can be used as a unique identifier in the primary collection.
+// as: The name of the new field that will contain the matching documents from the from collection.
+
 // Look Up Aggregate-- to compare two colletions
+
 
 db.mentors.aggregate([
     {
@@ -181,6 +245,15 @@ db.mentors.aggregate([
 ])
 
 // Match Aggregate-- stages of aggregation-- we can match & get overall sum from it 
+
+// Aggregation $match
+// This aggregation stage behaves like a find. It will filter documents that match the query provided.
+
+// Aggregation $group
+// This aggregation stage groups documents by the unique _id expression provided.
+
+// Don't confuse this _id expression with the _id ObjectId provided to each document.
+
 db.students.aggregate([
     {$match: {batch: "b51WD4"}},
     {$group:{_id:"$name",totalNumberOfStudents:{$sum:"$task"}}}
